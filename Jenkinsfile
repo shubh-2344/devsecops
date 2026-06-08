@@ -21,9 +21,9 @@ pipeline{
                     steps{
                         sshagent(['centos-server']){
                             sh '''
-                            scp -o StrictHostKeyChecking=no
+                            scp -o StrictHostKeyChecking=no \
                             webapp/target/*.war \
-                            oyster@103.81.38.251:/opt/tomcat/webapps/webapp.war'
+                            oyster@103.81.38.251:/opt/tomcat/webapps/webapp.war
                             '''
                     }
 
