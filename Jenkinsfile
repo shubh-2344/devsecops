@@ -15,10 +15,15 @@ pipeline{
             steps{
                 sh '''cd webapp
                 mvn clean package'''
+            }
                 stage('deploy to tomcat server'){
                     steps{
                         sshagent('53716db5-a649-4283-95e4-32ea709fe5a6'){
-                            sh 'scp -o StrictHostKeyChecking=no target/*.war' oyster@103.81.38.251:/opt/tomcat/webapps/webapp.war'
+                            sh '''
+                            scp -o StrictHostKeyChecking=no
+                            webapp/target/*.war \
+                            oyster@103.81.38.251:/opt/tomcat/webapps/webapp.war'
+                            '''
                     }
 
                 }
