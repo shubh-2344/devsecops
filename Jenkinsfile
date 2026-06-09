@@ -14,6 +14,13 @@ pipeline {
                     url: 'https://github.com/shubh-2344/devsecops.git'
             }
         }
+        stage('git secret checks'){
+            steps {
+                sh 'rm trufflehog || true'
+                sh ' sudo docker run gesellix/trufflehog --json https://github.com/shubh-2344/devsecops.git > trufflehog'
+                sh 'cat trufflehog'
+            }
+        }
 
         stage('build stage') {
             steps {
