@@ -17,18 +17,23 @@ pipeline{
                 mvn clean package'''
             }
         }
-                stage('deploy to tomcat server'){
-                    steps{
-                        withCredentails ([usernamePassword(credentialsId: 'centos-server',usernameVarialbe: 'USER',passwordVariable: 'PASS')])
+        stage('deploy to tomcat server') {
+        steps {
+            withCredentials([usernamePassword(
+                credentialsId: 'centos-server',
+                usernameVariable: 'USER',
+                passwordVariable: 'PASS'
+            )]) {
 
-                            sh '''
-                            sshpass -p "$PASS" scp -o  StrictHostKeyChecking=no \
-                            webapp/target/*.war \
-                            &USER@103.81.38.251:/opt/tomcat/webapps/webapp.war
-                            '''
-                    }
-
-                }
+                sh '''
+                    sshpass -p "$PASS" scp -o StrictHostKeyChecking=no \
+                    webapp/target/*.war \
+                    $USER@103.81.38.251:/opt/tomcat/webapps/webapp.war
+                '''
             }
         }
+    }
+
+    }
+ }
 
