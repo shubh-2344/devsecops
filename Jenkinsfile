@@ -19,7 +19,7 @@ pipeline{
         }
                 stage('deploy to tomcat server'){
                     steps{
-                        withCredentails ([usernamePassword(credentialsId: 'centos-server',usernameVarialbe: 'USER',passwordVariable: 'PASS')])
+                        withCredentials([usernamePassword(credentialsId: 'centos-server',usernameVarialbe: 'USER',passwordVariable: 'PASS')])
 
                             sh '''
                             sshpass -p "$PASS" scp -o  StrictHostKeyChecking=no \
