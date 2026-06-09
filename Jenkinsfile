@@ -34,6 +34,7 @@ pipeline {
         }
         stage('Static application security test'){
             steps {
+            dir('webapp') {
             withSonarQubeEnv('sonarqube') {
             sh '''
             mvn sonar:sonar
@@ -42,7 +43,7 @@ pipeline {
             }
         }
         }
-
+        }
         stage('build stage') {
             steps {
                 sh '''
