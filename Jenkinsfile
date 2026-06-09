@@ -19,11 +19,12 @@ pipeline{
         }
                 stage('deploy to tomcat server'){
                     steps{
-                        sshagent(['centos-server']){
+                        withCredentails ([usernamePassword(credentialsId: 'centos-server',usernameVarialbe: 'USER',passwordVariable: 'PASS')])
+
                             sh '''
-                            scp -o StrictHostKeyChecking=no \
+                            sshpass -p "$PASS" scp -o  StrictHostKeyChecking=no \
                             webapp/target/*.war \
-                            oyster@103.81.38.251:/opt/tomcat/webapps/webapp.war
+                            &USER@103.81.38.251:/opt/tomcat/webapps/webapp.war
                             '''
                     }
 
