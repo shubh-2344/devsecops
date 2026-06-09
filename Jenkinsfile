@@ -27,7 +27,7 @@ pipeline {
         stage('deploy to tomcat server') {
             steps {
                 withCredentials([usernamePassword(
-                    credentialsId: 'centos-server',
+                    credentialsId: '5e8700a6-4e0e-4ebb-9cb9-c5cf3177fd9b',
                     usernameVariable: 'USER',
                     passwordVariable: 'PASS'
                 )]) {
