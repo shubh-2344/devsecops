@@ -17,7 +17,6 @@ pipeline{
                 mvn clean package'''
             }
         }
-<<<<<<< HEAD
         stage('deploy to tomcat server') {
         steps {
             withCredentials([usernamePassword(
@@ -25,12 +24,9 @@ pipeline{
                 usernameVariable: 'USER',
                 passwordVariable: 'PASS'
             )]) {
-=======
                 stage('deploy to tomcat server'){
                     steps{
                         withCredentials([usernamePassword(credentialsId: 'centos-server',usernameVarialbe: 'USER',passwordVariable: 'PASS')])
->>>>>>> 6d04fdd6c8407deb95e4aec8ef3b9bf8300a87c7
-
                 sh '''
                     sshpass -p "$PASS" scp -o StrictHostKeyChecking=no \
                     webapp/target/*.war \
