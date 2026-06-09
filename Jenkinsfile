@@ -22,6 +22,17 @@ pipeline {
             }
         }
 
+        stage('owasp dependency check'){
+            steps{
+                sh 'rm owasp* || true'
+                sh 'wget "https://raw.githubusercontent.com/shubh-2344/devsecops/refs/heads/main/owasp-dependency-check.sh" '
+                sh 'chmod +x owasp-dependency-check.sh'
+                sh 'bash owasp-dependency-check.sh'
+
+            }
+
+        }
+
         stage('build stage') {
             steps {
                 sh '''
