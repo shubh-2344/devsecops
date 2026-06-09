@@ -32,6 +32,16 @@ pipeline {
             }
 
         }
+        stage('Static application security test'){
+            steps {
+            withSonarQubeEnv('Sonarqube') {
+            sh '''
+            mvn sonar:sonar
+            cat target/sonarqube/report-task.txt
+            '''
+            }
+        }
+        }
 
         stage('build stage') {
             steps {
