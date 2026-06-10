@@ -38,7 +38,7 @@ pipeline {
             withSonarQubeEnv('sonarqube') {
             sh '''
             mvn sonar:sonar
-            cat target/sonarqube/report-task.txt
+            cat target/sonar/report-task.txt
             '''
             }
         }
