@@ -20,6 +20,7 @@ docker pull owasp/dependency-check:$DC_VERSION
 
 docker run --rm \
     -e user=$USER \
+    -e NVD_API_KEY="$NVD_API_KEY" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
     --volume $(pwd):/src:z \
     --volume "$DATA_DIRECTORY":/usr/share/dependency-check/data:z \
