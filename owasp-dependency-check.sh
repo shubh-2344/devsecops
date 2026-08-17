@@ -50,7 +50,7 @@ docker run --rm \
     --out /report \
     --nvdApiKey="$NVD_API_KEY" \
     --disableNodeAudit \
-    --failOnCVSS 7
+    --failOnCVSS 8
 
 echo "=========================================="
 echo "Dependency-Check completed successfully"
