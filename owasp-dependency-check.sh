@@ -40,6 +40,7 @@ docker run --rm \
     --format "ALL" \
     --project "$DC_PROJECT" \
     --out /report \
+    --nvdApiKey "$NVD_API_KEY" \
     --disableNodeAudit \
     --failOnCVSS 7
 
